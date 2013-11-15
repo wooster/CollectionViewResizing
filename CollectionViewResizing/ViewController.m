@@ -15,7 +15,7 @@ typedef NS_ENUM(NSInteger, SizingApproach) {
 	SizingApproachManualCalculation,
 };
 
-#define SIZING_APPROACH SizingApproachNone
+#define SIZING_APPROACH SizingApproachAddConstraintCollectionView
 
 #import "ViewController.h"
 
@@ -110,9 +110,16 @@ static NSString *const ResizableCellReuseIdentifier = @"ResizableCell";
 		// The problem here is that the height of the portrait layout is the same as the height of the landscape
 		// layout, so there's a lot of extra vertical padding.
 		NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:sizingCell attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:self.collectionView.bounds.size.width];
+		[sizingCell.label setPreferredMaxLayoutWidth:self.collectionView.bounds.size.width - 40];
 		[sizingCell addConstraint:constraint];
 		[self configureResizableCell:sizingCell forIndexPath:indexPath];
 		CGSize size = [sizingCell systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+		CGSize sizingBounds = CGSizeMake(self.collectionView.bounds.size.width - 40, CGFLOAT_MAX);
+		CGSize labelSize = [sizingCell.label sizeThatFits:sizingBounds];
+		CGSize computedSize = CGSizeMake(sizingBounds.width + 40, labelSize.height + 18);
+		if (!CGSizeEqualToSize(computedSize, size)) {
+			NSLog(@"labelSize; %@, intrinisc: %@", NSStringFromCGSize(labelSize), NSStringFromCGSize(sizingCell.label.intrinsicContentSize));
+		}
 		[sizingCell removeConstraint:constraint];
 		return size;
 		
