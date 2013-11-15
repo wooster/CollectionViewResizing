@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ULW-Xh-MXa">
+                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ULW-Xh-MXa">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -34,6 +34,12 @@
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ULW-Xh-MXa" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="A9O-ps-LSg"/>
+                            <constraint firstItem="ULW-Xh-MXa" firstAttribute="top" secondItem="MkI-H1-4M2" secondAttribute="bottom" constant="-20" id="As3-zU-eap"/>
+                            <constraint firstAttribute="trailing" secondItem="ULW-Xh-MXa" secondAttribute="trailing" id="NPL-NY-daw"/>
+                            <constraint firstItem="Li3-tD-iKG" firstAttribute="top" secondItem="ULW-Xh-MXa" secondAttribute="bottom" id="Yfl-a4-Gf4"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="ULW-Xh-MXa" id="9hW-gl-eIS"/>

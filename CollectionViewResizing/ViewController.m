@@ -40,9 +40,14 @@ static NSString *const ResizableCellReuseIdentifier = @"ResizableCell";
 		[data addObject:[ipsum sentences:arc4random()%3 + 1]];
 	}
 	
-	self.collectionView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
-	self.collectionView.scrollIndicatorInsets = UIEdgeInsetsMake(20, 0, 0, 0);
 	[self.collectionView reloadData];
+}
+
+- (void)viewDidLayoutSubviews {
+	[super viewDidLayoutSubviews];
+	self.collectionView.contentInset = UIEdgeInsetsMake(self.topLayoutGuide.length, 0, 0, 0);
+	self.collectionView.scrollIndicatorInsets = UIEdgeInsetsMake(self.topLayoutGuide.length, 0, 0, 0);
+	[self.view layoutSubviews];
 }
 
 - (void)didReceiveMemoryWarning {
