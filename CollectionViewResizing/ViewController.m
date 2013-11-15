@@ -8,6 +8,15 @@
 
 #include <stdlib.h>
 
+typedef NS_ENUM(NSInteger, SizingApproach) {
+	SizingApproachNone,
+	SizingApproachAddConstraintCollectionView,
+	SizingApproachAddConstraintCollectionViewContentView,
+	SizingApproachManualCalculation,
+};
+
+#define SIZING_APPROACH SizingApproachNone
+
 #import "ViewController.h"
 
 #import "LoremIpsum.h"
@@ -54,10 +63,14 @@ static NSString *const ResizableCellReuseIdentifier = @"ResizableCell";
     [super didReceiveMemoryWarning];
 }
 
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+	[super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+	[self relayoutSubviews];
+}
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
 	[super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-	[self relayoutSubviews];
+//	[self relayoutSubviews];
 }
 
 - (void)relayoutSubviews {
@@ -88,7 +101,40 @@ static NSString *const ResizableCellReuseIdentifier = @"ResizableCell";
 
 #pragma mark UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-	[self configureResizableCell:sizingCell forIndexPath:indexPath];
-	return [sizingCell systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+	if (SIZING_APPROACH == SizingApproachNone) {
+		[self configureResizableCell:sizingCell forIndexPath:indexPath];
+		return [sizingCell systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+		
+	} else if (SIZING_APPROACH == SizingApproachAddConstraintCollectionView) {
+		// Adding a constant size constraint on the width of the cell.
+		// The problem here is that the height of the portrait layout is the same as the height of the landscape
+		// layout, so there's a lot of extra vertical padding.
+		NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:sizingCell attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:self.collectionView.bounds.size.width];
+		[sizingCell addConstraint:constraint];
+		[self configureResizableCell:sizingCell forIndexPath:indexPath];
+		CGSize size = [sizingCell systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+		[sizingCell removeConstraint:constraint];
+		return size;
+		
+	} else if (SIZING_APPROACH == SizingApproachAddConstraintCollectionViewContentView) {
+		// Same as above, except the constraint is on the content view.
+		NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:sizingCell.contentView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:self.collectionView.bounds.size.width];
+		[sizingCell.contentView addConstraint:constraint];
+		[self configureResizableCell:sizingCell forIndexPath:indexPath];
+		CGSize size = [sizingCell systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+		[sizingCell.contentView removeConstraint:constraint];
+		return size;
+	
+	} else if (SIZING_APPROACH == SizingApproachManualCalculation) {
+		// Here we just calculate things directly.
+		[self configureResizableCell:sizingCell forIndexPath:indexPath];
+		CGSize sizingBounds = CGSizeMake(self.collectionView.bounds.size.width - 40, CGFLOAT_MAX);
+		CGSize labelSize = [sizingCell.label sizeThatFits:sizingBounds];
+		CGSize size = CGSizeMake(sizingBounds.width + 40, labelSize.height + 18);
+		return size;
+		
+	} else {
+		return CGSizeZero;
+	}
 }
 @end
