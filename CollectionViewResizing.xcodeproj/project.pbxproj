@@ -21,6 +21,8 @@
 		49477BAB1836D32C001D37AD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49477B8D1836D32C001D37AD /* UIKit.framework */; };
 		49477BB31836D32C001D37AD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49477BB11836D32C001D37AD /* InfoPlist.strings */; };
 		49477BB51836D32C001D37AD /* CollectionViewResizingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 49477BB41836D32C001D37AD /* CollectionViewResizingTests.m */; };
+		49477BC01836D367001D37AD /* ResizableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49477BBF1836D367001D37AD /* ResizableCell.m */; };
+		49477BC21836D3A4001D37AD /* ResizableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49477BC11836D3A4001D37AD /* ResizableCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,9 @@
 		49477BB01836D32C001D37AD /* CollectionViewResizingTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CollectionViewResizingTests-Info.plist"; sourceTree = "<group>"; };
 		49477BB21836D32C001D37AD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		49477BB41836D32C001D37AD /* CollectionViewResizingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionViewResizingTests.m; sourceTree = "<group>"; };
+		49477BBE1836D367001D37AD /* ResizableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResizableCell.h; sourceTree = "<group>"; };
+		49477BBF1836D367001D37AD /* ResizableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResizableCell.m; sourceTree = "<group>"; };
+		49477BC11836D3A4001D37AD /* ResizableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResizableCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +122,9 @@
 				49477B9B1836D32C001D37AD /* Main.storyboard */,
 				49477B9E1836D32C001D37AD /* ViewController.h */,
 				49477B9F1836D32C001D37AD /* ViewController.m */,
+				49477BBE1836D367001D37AD /* ResizableCell.h */,
+				49477BBF1836D367001D37AD /* ResizableCell.m */,
+				49477BC11836D3A4001D37AD /* ResizableCell.xib */,
 				49477BA11836D32C001D37AD /* Images.xcassets */,
 				49477B901836D32C001D37AD /* Supporting Files */,
 			);
@@ -231,6 +239,7 @@
 				49477BA21836D32C001D37AD /* Images.xcassets in Resources */,
 				49477B941836D32C001D37AD /* InfoPlist.strings in Resources */,
 				49477B9D1836D32C001D37AD /* Main.storyboard in Resources */,
+				49477BC21836D3A4001D37AD /* ResizableCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,6 +261,7 @@
 				49477BA01836D32C001D37AD /* ViewController.m in Sources */,
 				49477B9A1836D32C001D37AD /* AppDelegate.m in Sources */,
 				49477B961836D32C001D37AD /* main.m in Sources */,
+				49477BC01836D367001D37AD /* ResizableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
