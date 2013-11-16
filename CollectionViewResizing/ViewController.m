@@ -13,9 +13,10 @@ typedef NS_ENUM(NSInteger, SizingApproach) {
 	SizingApproachAddConstraintCollectionView,
 	SizingApproachAddConstraintCollectionViewContentView,
 	SizingApproachManualCalculation,
+	SizingApproachHybrid,
 };
 
-#define SIZING_APPROACH SizingApproachAddConstraintCollectionView
+#define SIZING_APPROACH SizingApproachHybrid
 
 #import "ViewController.h"
 
@@ -114,12 +115,6 @@ static NSString *const ResizableCellReuseIdentifier = @"ResizableCell";
 		[sizingCell addConstraint:constraint];
 		[self configureResizableCell:sizingCell forIndexPath:indexPath];
 		CGSize size = [sizingCell systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
-		CGSize sizingBounds = CGSizeMake(self.collectionView.bounds.size.width - 40, CGFLOAT_MAX);
-		CGSize labelSize = [sizingCell.label sizeThatFits:sizingBounds];
-		CGSize computedSize = CGSizeMake(sizingBounds.width + 40, labelSize.height + 18);
-		if (!CGSizeEqualToSize(computedSize, size)) {
-			NSLog(@"labelSize; %@, intrinisc: %@", NSStringFromCGSize(labelSize), NSStringFromCGSize(sizingCell.label.intrinsicContentSize));
-		}
 		[sizingCell removeConstraint:constraint];
 		return size;
 		
@@ -138,6 +133,13 @@ static NSString *const ResizableCellReuseIdentifier = @"ResizableCell";
 		CGSize sizingBounds = CGSizeMake(self.collectionView.bounds.size.width - 40, CGFLOAT_MAX);
 		CGSize labelSize = [sizingCell.label sizeThatFits:sizingBounds];
 		CGSize size = CGSizeMake(sizingBounds.width + 40, labelSize.height + 18);
+		return size;
+		
+	} else if (SIZING_APPROACH == SizingApproachHybrid) {
+		[self configureResizableCell:sizingCell forIndexPath:indexPath];
+		[sizingCell.label setPreferredMaxLayoutWidth:self.collectionView.bounds.size.width - 40];
+		CGSize size = [sizingCell systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+		size.width = self.collectionView.bounds.size.width;
 		return size;
 		
 	} else {
