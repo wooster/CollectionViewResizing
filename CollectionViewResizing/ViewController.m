@@ -31,7 +31,7 @@ static NSString *const ResizableCellReuseIdentifier = @"ResizableCell";
 
 @implementation ViewController {
 	ResizableCell *sizingCell;
-	CGFloat sizingCellLabelHorizontalPadding;
+	CGFloat sizingCellTextViewHorizontalPadding;
 	
 	NSMutableArray *data;
 }
@@ -41,7 +41,7 @@ static NSString *const ResizableCellReuseIdentifier = @"ResizableCell";
 	
 	UINib *resizableCellNib = [UINib nibWithNibName:@"ResizableCell" bundle:nil];
 	sizingCell = [[resizableCellNib instantiateWithOwner:self options:nil] firstObject];
-	sizingCellLabelHorizontalPadding = CGRectGetWidth(sizingCell.bounds) - CGRectGetWidth(sizingCell.label.bounds);
+	sizingCellTextViewHorizontalPadding = CGRectGetWidth(sizingCell.bounds) - CGRectGetWidth(sizingCell.textView.bounds);
 	
 	[self.collectionView registerNib:resizableCellNib forCellWithReuseIdentifier:ResizableCellReuseIdentifier];
 	
@@ -80,7 +80,7 @@ static NSString *const ResizableCellReuseIdentifier = @"ResizableCell";
 }
 
 - (void)configureResizableCell:(ResizableCell *)cell forIndexPath:(NSIndexPath *)indexPath {
-	cell.label.text = data[indexPath.item];
+	cell.textView.text = data[indexPath.item];
 }
 
 #pragma mark UICollectionViewDelegate
@@ -133,13 +133,13 @@ static NSString *const ResizableCellReuseIdentifier = @"ResizableCell";
 		// Here we just calculate things directly.
 		[self configureResizableCell:sizingCell forIndexPath:indexPath];
 		CGSize sizingBounds = CGSizeMake(self.collectionView.bounds.size.width - 40, CGFLOAT_MAX);
-		CGSize labelSize = [sizingCell.label sizeThatFits:sizingBounds];
-		CGSize size = CGSizeMake(sizingBounds.width + 40, labelSize.height + 18);
+		CGSize textViewSize = [sizingCell.textView sizeThatFits:sizingBounds];
+		CGSize size = CGSizeMake(sizingBounds.width + 40, textViewSize.height + 18);
 		return size;
 		
 	} else if (SIZING_APPROACH == SizingApproachHybrid) {
 		[self configureResizableCell:sizingCell forIndexPath:indexPath];
-		[sizingCell.label setPreferredMaxLayoutWidth:self.collectionView.bounds.size.width - sizingCellLabelHorizontalPadding];
+		[sizingCell.textView setPreferredMaxLayoutWidth:self.collectionView.bounds.size.width - sizingCellTextViewHorizontalPadding];
 		CGSize size = [sizingCell systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
 		size.width = self.collectionView.bounds.size.width;
 		return size;

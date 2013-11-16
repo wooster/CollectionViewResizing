@@ -24,6 +24,7 @@
 		49477BC01836D367001D37AD /* ResizableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49477BBF1836D367001D37AD /* ResizableCell.m */; };
 		49477BC21836D3A4001D37AD /* ResizableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49477BC11836D3A4001D37AD /* ResizableCell.xib */; };
 		49477BC51836D511001D37AD /* LoremIpsum.m in Sources */ = {isa = PBXBuildFile; fileRef = 49477BC41836D511001D37AD /* LoremIpsum.m */; };
+		49477BC81836F73A001D37AD /* ResizingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49477BC71836F73A001D37AD /* ResizingTextView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,8 @@
 		49477BC11836D3A4001D37AD /* ResizableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResizableCell.xib; sourceTree = "<group>"; };
 		49477BC31836D511001D37AD /* LoremIpsum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoremIpsum.h; path = ext/LoremIpsum/LoremIpsum.h; sourceTree = SOURCE_ROOT; };
 		49477BC41836D511001D37AD /* LoremIpsum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoremIpsum.m; path = ext/LoremIpsum/LoremIpsum.m; sourceTree = SOURCE_ROOT; };
+		49477BC61836F73A001D37AD /* ResizingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResizingTextView.h; sourceTree = "<group>"; };
+		49477BC71836F73A001D37AD /* ResizingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResizingTextView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +133,8 @@
 				49477BC11836D3A4001D37AD /* ResizableCell.xib */,
 				49477BC31836D511001D37AD /* LoremIpsum.h */,
 				49477BC41836D511001D37AD /* LoremIpsum.m */,
+				49477BC61836F73A001D37AD /* ResizingTextView.h */,
+				49477BC71836F73A001D37AD /* ResizingTextView.m */,
 				49477BA11836D32C001D37AD /* Images.xcassets */,
 				49477B901836D32C001D37AD /* Supporting Files */,
 			);
@@ -267,6 +272,7 @@
 				49477BC51836D511001D37AD /* LoremIpsum.m in Sources */,
 				49477B9A1836D32C001D37AD /* AppDelegate.m in Sources */,
 				49477B961836D32C001D37AD /* main.m in Sources */,
+				49477BC81836F73A001D37AD /* ResizingTextView.m in Sources */,
 				49477BC01836D367001D37AD /* ResizableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

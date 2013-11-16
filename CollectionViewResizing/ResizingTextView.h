@@ -1,5 +1,5 @@
 //
-//  ResizableCell.h
+//  ResizingTextView.h
 //  CollectionViewResizing
 //
 //  Created by Andrew Wooster on 11/15/13.
@@ -8,9 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "ResizingTextView.h"
-
-@interface ResizableCell : UICollectionViewCell
-@property (strong, nonatomic) IBOutlet ResizingTextView *textView;
-
+@interface ResizingTextView : UITextView
+@property (nonatomic, assign) CGFloat preferredMaxLayoutWidth;
 @end

@@ -13,26 +13,26 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="ANv-dl-H4M">
+                    <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TZc-7L-rZi" customClass="ResizingTextView">
                         <rect key="frame" x="20" y="9" width="280" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <color key="backgroundColor" red="0.7969814819087131" green="1" blue="0.0" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="ANv-dl-H4M" secondAttribute="bottom" constant="9" id="XVc-O3-hlV"/>
-                <constraint firstItem="ANv-dl-H4M" firstAttribute="leading" secondItem="X6X-Qb-Dvi" secondAttribute="leading" constant="20" id="dJr-85-O9f"/>
-                <constraint firstAttribute="trailing" secondItem="ANv-dl-H4M" secondAttribute="trailing" constant="20" id="tfQ-Oe-hxj"/>
-                <constraint firstItem="ANv-dl-H4M" firstAttribute="top" secondItem="X6X-Qb-Dvi" secondAttribute="top" constant="9" id="zbA-QZ-9pE"/>
+                <constraint firstItem="TZc-7L-rZi" firstAttribute="top" secondItem="X6X-Qb-Dvi" secondAttribute="top" constant="9" id="C4i-S6-8Jh"/>
+                <constraint firstItem="TZc-7L-rZi" firstAttribute="leading" secondItem="X6X-Qb-Dvi" secondAttribute="leading" constant="20" id="hbQ-Gy-hcz"/>
+                <constraint firstAttribute="bottom" secondItem="TZc-7L-rZi" secondAttribute="bottom" constant="9" id="kHz-Tp-mf9"/>
+                <constraint firstAttribute="trailing" secondItem="TZc-7L-rZi" secondAttribute="trailing" constant="20" id="ofO-3f-45b"/>
             </constraints>
             <connections>
-                <outlet property="label" destination="ANv-dl-H4M" id="n2T-gL-Ubp"/>
+                <outlet property="textView" destination="TZc-7L-rZi" id="E06-bs-UfR"/>
             </connections>
         </collectionViewCell>
     </objects>
