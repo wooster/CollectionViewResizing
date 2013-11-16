@@ -31,6 +31,7 @@ static NSString *const ResizableCellReuseIdentifier = @"ResizableCell";
 
 @implementation ViewController {
 	ResizableCell *sizingCell;
+	CGFloat sizingCellLabelHorizontalPadding;
 	
 	NSMutableArray *data;
 }
@@ -40,6 +41,7 @@ static NSString *const ResizableCellReuseIdentifier = @"ResizableCell";
 	
 	UINib *resizableCellNib = [UINib nibWithNibName:@"ResizableCell" bundle:nil];
 	sizingCell = [[resizableCellNib instantiateWithOwner:self options:nil] firstObject];
+	sizingCellLabelHorizontalPadding = CGRectGetWidth(sizingCell.bounds) - CGRectGetWidth(sizingCell.label.bounds);
 	
 	[self.collectionView registerNib:resizableCellNib forCellWithReuseIdentifier:ResizableCellReuseIdentifier];
 	
@@ -71,7 +73,6 @@ static NSString *const ResizableCellReuseIdentifier = @"ResizableCell";
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
 	[super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-//	[self relayoutSubviews];
 }
 
 - (void)relayoutSubviews {
@@ -111,7 +112,8 @@ static NSString *const ResizableCellReuseIdentifier = @"ResizableCell";
 		// The problem here is that the height of the portrait layout is the same as the height of the landscape
 		// layout, so there's a lot of extra vertical padding.
 		NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:sizingCell attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:self.collectionView.bounds.size.width];
-		[sizingCell.label setPreferredMaxLayoutWidth:self.collectionView.bounds.size.width - 40];
+		// Following line would fix it:
+		//[sizingCell.label setPreferredMaxLayoutWidth:self.collectionView.bounds.size.width - 40];
 		[sizingCell addConstraint:constraint];
 		[self configureResizableCell:sizingCell forIndexPath:indexPath];
 		CGSize size = [sizingCell systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
@@ -137,7 +139,7 @@ static NSString *const ResizableCellReuseIdentifier = @"ResizableCell";
 		
 	} else if (SIZING_APPROACH == SizingApproachHybrid) {
 		[self configureResizableCell:sizingCell forIndexPath:indexPath];
-		[sizingCell.label setPreferredMaxLayoutWidth:self.collectionView.bounds.size.width - 40];
+		[sizingCell.label setPreferredMaxLayoutWidth:self.collectionView.bounds.size.width - sizingCellLabelHorizontalPadding];
 		CGSize size = [sizingCell systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
 		size.width = self.collectionView.bounds.size.width;
 		return size;
