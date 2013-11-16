@@ -13,10 +13,10 @@ typedef NS_ENUM(NSInteger, SizingApproach) {
 	SizingApproachAddConstraintCollectionView,
 	SizingApproachAddConstraintCollectionViewContentView,
 	SizingApproachManualCalculation,
-	SizingApproachHybrid,
+	SizingApproachPreferredMaxLayoutWidth,
 };
 
-#define SIZING_APPROACH SizingApproachHybrid
+#define SIZING_APPROACH SizingApproachPreferredMaxLayoutWidth
 
 #import "ViewController.h"
 
@@ -137,7 +137,7 @@ static NSString *const ResizableCellReuseIdentifier = @"ResizableCell";
 		CGSize size = CGSizeMake(sizingBounds.width + 40, labelSize.height + 18);
 		return size;
 		
-	} else if (SIZING_APPROACH == SizingApproachHybrid) {
+	} else if (SIZING_APPROACH == SizingApproachPreferredMaxLayoutWidth) {
 		[self configureResizableCell:sizingCell forIndexPath:indexPath];
 		[sizingCell.label setPreferredMaxLayoutWidth:self.collectionView.bounds.size.width - sizingCellLabelHorizontalPadding];
 		CGSize size = [sizingCell systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
